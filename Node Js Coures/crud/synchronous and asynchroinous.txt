@@ -1,0 +1,35 @@
+/*------------- what is  synchronous and asynchroinous ------------- */
+synchronous == jab sama 1 ota kam complete hudaina taba sama aarko kam garna paudaina (task complete one by one, wait garnu parxa)
+
+asynchroinous == multiple kam garna sakaxa ekai choti without depending to other
+wait garnu chai pardina
+
+
+/-------synchronous exmaple----------/
+const func2 = () => {
+  console.log("fun2 is starting") // 2nd call
+}
+const func1 = () => {
+  console.log("fun1 is starting") // 1st call
+  func2()
+  console.log("fun1 is ending") // 3rd call
+}
+func1()
+ 
+
+/-------asynchroinous exmaple----------/
+const func2 = () => {
+  setTimeout(() => {
+    console.log("func2 is starting") // 3rd call after 3s
+  }, 3000)
+}
+const func1 = () => {
+  console.log("fun1 is starting") // 1st call
+  func2()
+  console.log("fun1 is ending") // 2nd call
+}
+func1()
+
+
+/*-------------  Synchronous Vs Asynchroinous ------------- */
+asyVssyn

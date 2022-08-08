@@ -1,0 +1,40 @@
+// jaba 1 ota kam complete hudaina taba sama aakro kam garna paudaina
+const funA = () => {
+  setTimeout(() => {
+    console.log("welocome FunA")
+  }, 3000)
+}
+const funB = () => {
+  console.log("welocome funB")
+}
+funA()
+funB()
+
+// yato condition ma chai callBack () used hunxa
+/--------- method 1st --------------------/
+// yasma chai hami le dheri time (3s) sama wait garnu parxa  ani babal o/p aauxa 
+tara hami yatso chauyana 
+
+const funA = () => {
+  setTimeout(() => {
+    console.log("welocome FunA")
+    funB()
+  }, 3000)
+}
+const funB = () => {
+  console.log("welocome funB")
+}
+funA()
+/--------- method 1st --------------------/
+
+
+/--------- it is call callback() method 2st --------------------/
+const perOne = (friend, callFrnd) => {
+  console.log(`I am buys right now. I am, talking to ${friend}. I will call you back`)
+  callFrnd()
+}
+const perTwo = () => {
+  console.log("I will callback")
+}
+perOne("Sunil", perTwo())
+/--------- it is call callback() method 2st --------------------/

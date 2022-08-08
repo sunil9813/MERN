@@ -1,0 +1,131 @@
+$eq  --> Matches values that are equal to a specified value.
+$gt  --> Matches values that are greater than a specified value.
+$gte --> Matches values that are greater than or equal to a specified value.
+$in  --> Matches any of the values specified in an array.
+$lt  --> Matches values that are less than a specified value.
+$lte --> Matches values that are less than or equal to a specified value.
+$ne  --> Matches all values that are not equal to a specified value.
+$nin --> Matches none of the values specified in an array.
+
+1 . Equals ($eq)
+--> yadi value chai match garxa field saga bhane show garxa (20===20) then only show o/p
+Syntax: { <field>: { $eq: <value> } }
+Example : 
+  const result = await playlist.find({ video: { $eq: 20 } }).select({ name: 1 })
+OutPut: 
+  [ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+
+2 . Greater than ($gt)  
+--> 20 bhada mate ko video jj kasko xa teyoo sbai show garxa
+Syntax: { field: { $gt: value } }
+Example : 
+  const result = await playlist.find({ video: { $gt: 20 } }).select({ name: 1 })
+OutPut: 
+[
+  { _id: new ObjectId("62e4c24a083598be97aeb745"), name: 'ReactJs' },
+  { _id: new ObjectId("62e4c82bfdd8e9bb21750e40"), name: 'MYSQL' },
+  { _id: new ObjectId("62e4c99af4698a1e4412b559"), name: 'CSS' }
+]
+
+3 . Greater than or equal ($gte)
+--> suppos value chai 20 xa bhane aba chai op chai 20 sama ra teyoo bhnada mate chai ko result show garnu paryo 
+Syntax: { field: { $gte: value } }
+Example :
+ const result = await playlist.find({ video: { $gte: 20 } }).select({ name: 1 })
+OutPut: 
+[
+  { _id: new ObjectId("62e4c24a083598be97aeb745"), name: 'ReactJs' },
+  { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' },
+  { _id: new ObjectId("62e4c82bfdd8e9bb21750e40"), name: 'MYSQL' },
+  { _id: new ObjectId("62e4c99af4698a1e4412b559"), name: 'CSS' }
+]
+
+4 . Greater than or equal ($gte)
+--> yadi document kunai value saga match garxa bhane show garxa OutPut i.e multiple filed lai filter garna milxa
+Syntax: { field: { $in: [<value1>, <value2>, ... <valueN> ] } }
+Example :
+  const result = await playlist.find({ ctype: { $in: ["Back End", "Database"] } }).select({ name: 1 })
+OutPut: 
+[
+  { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' },
+  { _id: new ObjectId("62e4c82bfdd8e9bb21750e40"), name: 'MYSQL' }
+]
+
+5 . Less than ($lt)
+--> suppose value chai 30 xa bhane teyoo bhdana muni or sano value sabai lai print garxa
+Syntax: { field: { $lt: value } }
+Example :
+  const result = await playlist.find({ video: { $lt: 30 } }).select({ name: 1 })
+OutPut: 
+[ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+
+6 .  Less than or equal ($lte)
+--> suppose value chai 20 xa bhane teyoo bhdana muni ra 20 ko value sabai lai print garxa
+Syntax: { field: { $lte: value } 
+Example :
+  const result = await playlist.find({ video: { $lte: 20 } }).select({ name: 1 })
+OutPut:
+[ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+
+7 . Not equal to ($ne) 
+--> jun value saga chai macth garko xa teyoo chai print nagarne baki sabai lai print garne
+Syntax: { field: { $ne: value } }
+Example :
+  const result = await playlist.find({ video: { $ne: 20 } }).select({ name: 1 })
+OutPut: 
+[
+  { _id: new ObjectId("62e4c24a083598be97aeb745"), name: 'ReactJs' },
+  { _id: new ObjectId("62e4c82bfdd8e9bb21750e40"), name: 'MYSQL' },
+  { _id: new ObjectId("62e4c99af4698a1e4412b559"), name: 'CSS' }
+]
+
+8 .  no element equal to a value
+--> similar to  $ne method tara yasma chai multiple value lai use garna milaxa , jun value chai match garxa tesali show nagrne 
+Syntax: { field: { $nin: [ <value1>, <value2> ... <valueN> ] } }
+Example :
+  const result = await playlist.find({ video: { $nin: [10, 80] } }).select({ name: 1 })
+OutPut: 
+[ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+/*-------------insert document----------------------*/
+[
+  {
+    _id: new ObjectId("62e4c24a083598be97aeb745"),
+    name: 'ReactJs',
+    ctype: 'Front End',
+    video: 80,
+    author: 'Sunil',
+    active: true,
+    date: 2022-07-30T05:31:54.585Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("62e4c3bd45d7650063944b19"),
+    name: 'Node Js',
+    ctype: 'Back End',
+    video: 20,
+    author: 'Sunil',
+    active: true,
+    date: 2022-07-30T05:38:05.783Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("62e4c82bfdd8e9bb21750e40"),
+    name: 'MYSQL',
+    ctype: 'Database',
+    video: 80,
+    author: 'Sunil',
+    active: true,
+    date: 2022-07-30T05:56:59.758Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("62e4c99af4698a1e4412b559"),
+    name: 'CSS',
+    ctype: 'Style',
+    video: 80,
+    author: 'Sunil',
+    active: true,
+    date: 2022-07-30T06:03:06.083Z,
+    __v: 0
+  }
+]

@@ -1,0 +1,50 @@
+$and --> Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.
+$not --> Inverts the effect of a query expression and returns documents that do not match the query expression.
+$nor --> Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
+$or  --> Joins query clauses with a logical OR returns all documents that match the conditions of either clause.
+
+1. AND ($and)
+--> 2 ota condition chai true hunai paryo , 1 ota matra condition true bhayara bhayana
+Syntax: { $and: [ { <expression1> }, { <expression2> } , ... , { <expressionN> } ] }
+Example: 
+   const result = await playlist.find({ $or: [{ ctype: "Back End" }, { author: "ram" }] }).select({ name: 1 })
+OutPut: 
+  [ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+
+2. NOT
+--> regular expression objects (i.e. /pattern/)
+    db.inventory.find( { item: { $not: /^p.*/ } } )
+--> $regex operator expression  
+    db.inventory.find( { item: { $not: { $regex: "^p.*" } } } )
+    db.inventory.find( { item: { $not: { $regex: /^p.*/ } } } )
+--> driver language's regular expression objects
+    import re
+    for noMatch in db.inventory.find( { "item": { "$not": re.compile("^p.*") } } ):
+    print noMatch
+Syntax: { field: { $not: { <operator-expression> } } }
+Example: yadi video = 80 xa bhane dont show that value , remaming value chai show garne
+  const result = await playlist.find({ video: { $not: { $eq: 80 } } }).select({ name: 1 })
+OutPut: 
+[ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+
+3. NOR ($nor)
+--> yasma chai yadi document ma match garxa hamro condition bhane teyoo value chai show gardina baki remaming value lai matra show garxa
+Syntax: { $nor: [ { <expression1> }, { <expression2> }, ...  { <expressionN> } ] }
+Example: 
+const result4 = await playlist.find({ $nor: [{ name: "MYSQL" }, { video: 20 }] }).select({ name: 1 })
+OutPut: 
+[
+  { _id: new ObjectId("62e4c24a083598be97aeb745"), name: 'ReactJs' },
+  { _id: new ObjectId("62e4c99af4698a1e4412b559"), name: 'CSS' }
+]
+
+4. OR operation ($or)
+--> OR operation le chai 2 or more bhanda badi operator lai perform garxa ani document bata at least 1 ota o/p lai show garxa 
+--> yasma chai 2 ota ma kunai 1ota matra expression chai true bhayo bhane o/p aauca
+Syntax: 
+  { $or: [ { <expression1> }, { <expression2> }, ... , { <expressionN> } ] }
+Example: 
+  const result = await playlist.find({ $or: [{ ctype: "Back End" }, { author: "ram" }] }).select({ name: 1 })
+OutPut: 
+[ { _id: new ObjectId("62e4c3bd45d7650063944b19"), name: 'Node Js' } ]
+
